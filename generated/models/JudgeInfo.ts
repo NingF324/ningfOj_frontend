@@ -4,7 +4,7 @@
 /* eslint-disable */
 export type JudgeInfo = {
   memoryLimit?: number;
-  stackLimit?: number;
+  message?: string;
   timeLimit?: number;
 };
 
