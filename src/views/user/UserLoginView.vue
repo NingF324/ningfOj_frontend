@@ -20,6 +20,12 @@
         <a-button html-type="submit" style="width: 120px" type="primary"
           >登录</a-button
         >
+        <a-button
+          style="width: 120px; left: 180px"
+          type="primary"
+          @click="go2Register"
+          >注册</a-button
+        >
       </a-form-item>
     </a-form>
   </div>
@@ -40,6 +46,11 @@ const router = useRouter();
 
 const store = useStore();
 
+const go2Register = () => {
+  router.push({
+    path: "/user/register",
+  });
+};
 /**
  * 提交表单
  * @param form

@@ -7,8 +7,8 @@
       :model="form"
       @submit="handleSubmit"
     >
-      <a-form-item field="userName" label="用户名称">
-        <a-input v-model="form.userName" placeholder="请输入用户名称" />
+      <a-form-item field="userAccount" label="用户名称">
+        <a-input v-model="form.userName" placeholder="请输入用户名" />
       </a-form-item>
       <a-form-item field="userAccount" label="账号">
         <a-input v-model="form.userAccount" placeholder="请输入账号" />
@@ -21,14 +21,14 @@
       </a-form-item>
       <a-form-item field="confirmPassword" label="确认密码">
         <a-input-password
-          v-model="form.confirmPassword"
+          v-model="form.checkPassword"
           placeholder="请确认密码"
-          @input="confirmPassword"
+          @input="checkPassword"
         />
       </a-form-item>
       <a-form-item>
         <a-button html-type="submit" style="width: 120px" type="primary"
-          >登录
+          >注册
         </a-button>
       </a-form-item>
     </a-form>
@@ -53,8 +53,8 @@ const router = useRouter();
 const store = useStore();
 
 //todo 前端完成对密码的校验
-/*const confirmPassword = () => {
-  if (form.userPassword === form.confirmPassword) {
+/*const checkPassword = () => {
+  if (form.userPassword === form.checkPassword) {
 
   }
 };*/
@@ -63,11 +63,11 @@ const store = useStore();
  * @param form
  */
 const handleSubmit = async () => {
-  const res = await UserControllerService.userLoginUsingPost(form);
+  const res = await UserControllerService.userRegisterUsingPost(form);
   if (res.code === 0) {
-    await store.dispatch("user/getLoginUser");
+    message.success("注册成功" + res.message);
     router.push({
-      path: "/",
+      path: "/user/login",
       //使用replace避免回退时会返回登录页
       replace: true,
     });
